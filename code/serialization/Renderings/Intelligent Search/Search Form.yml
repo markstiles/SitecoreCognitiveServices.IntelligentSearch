@@ -1,0 +1,18 @@
+﻿---
+ID: "40a9d743-7219-4922-bfd3-36bd780cbbc3"
+Parent: "10f13c24-d013-478b-ab73-634599402fd7"
+Template: "99f8905d-4a87-4eb8-9f8b-a9bebfb3add6"
+Path: /sitecore/layout/Renderings/Sitecore Cognitive Services/Features/Intelligent Search/Search Form
+DB: master
+SharedFields:
+- ID: "51b435bc-f7b9-478a-9c51-52916af96ff5"
+  Hint: Path
+  Value: /Areas/SitecoreCognitiveServices/Views/IntelligentSearch/SearchForm.cshtml
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20190429T174823Z

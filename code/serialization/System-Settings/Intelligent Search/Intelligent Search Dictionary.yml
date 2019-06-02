@@ -1,0 +1,28 @@
+﻿---
+ID: "cad794a5-fab9-47f4-8858-e2faffdb9624"
+Parent: "ffe91fa0-7d45-4fd5-901c-963f8fb15f79"
+Template: "0a2847e6-9885-450b-b61e-f9e6528480ef"
+Path: /sitecore/system/Modules/Sitecore Cognitive Services/Intelligent Search/Intelligent Search Dictionary
+DB: master
+BranchID: "140c3dac-2fde-48e7-811f-21669e8ed84b"
+SharedFields:
+- ID: "06d5295c-ed2f-4a54-9bf2-26228d113318"
+  Hint: __Icon
+  Value: Office/32x32/book2.png
+- ID: "1172f251-dad4-4efb-a329-0c63500e4f1e"
+  Hint: __Masters
+  Type: TreelistEx
+  Value: |
+    {25672703-93BD-4056-88A4-9C20EC501967}
+    {46377307-DD97-43DC-AD21-5A32DAB844D6}
+- ID: "f6d8a61c-2f84-4401-bd24-52d2068172bc"
+  Hint: __Originator
+  Value: "{8842DC87-30F1-448B-A057-D03116D91436}"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20181120T205719Z

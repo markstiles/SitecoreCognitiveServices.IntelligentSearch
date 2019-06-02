@@ -1,0 +1,31 @@
+﻿@using SitecoreCognitiveServices.Feature.IntelligentSearch.Statics
+
+@{
+    ViewBag.Title = "Cognitive Services: Intelligent Search Sample";
+    Layout = "~/Areas/SitecoreCognitiveServices/Views/Common/CognitiveLayout.cshtml";
+}
+
+<link href="/Areas/SitecoreCognitiveServices/Assets/css/SitecoreCognitiveServices.Feature.IntelligentSearch.css?x=@(new System.Random().Next())" rel="stylesheet" type="text/css" />
+<script src="/Areas/SitecoreCognitiveServices/Assets/js/SitecoreCognitiveServices.Feature.IntelligentSearch.ManageProfile.js"></script>
+
+<!-- This is for allowing a user to sync or add more intents. Need to add a form
+    for selecting the profile when submitting new phrases. -->
+
+<div class="frame">
+
+    <form class="form manageprofile-form" method="post" action="/SitecoreCognitiveServices/IntelligentSearch/ManageProfilePost">
+        <fieldset>
+            <div>
+                @Html.Partial("_ContextFields")
+            </div>
+        </fieldset>
+        <div class="manageprofile-input-wrap">
+            <input class="manageprofile-input" type="text" />
+        </div>
+        <button class="manageprofile-submit scButton">@Translator.Text("ManageProfile.Search")</button>
+    </form>
+    <div class="result-wrap">
+        
+    </div>
+    @Html.Partial("_ProgressIndicator")
+</div>

@@ -1,0 +1,14 @@
+﻿---
+ID: "366597ab-bed3-45af-bda9-6cb166f70afd"
+Parent: "ffe91fa0-7d45-4fd5-901c-963f8fb15f79"
+Template: "632c2f99-6405-4f5f-9858-38dc8784bb0a"
+Path: /sitecore/system/Modules/Sitecore Cognitive Services/Intelligent Search/Search Profiles
+DB: master
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20181123T164753Z

@@ -1,0 +1,29 @@
+﻿---
+ID: "1355a616-5f7b-4079-91ac-c2a60c8db66e"
+Parent: "f49dd6f0-2d98-4ed0-a97f-9512a085a374"
+Template: "6d1cd897-1936-4a3a-a511-289a94c2a7b1"
+Path: /sitecore/system/Modules/Sitecore Cognitive Services/Intelligent Search/Intelligent Search Dictionary/Search Form/Parameters/Message Request
+DB: master
+BranchID: "25672703-93bd-4056-88a4-9c20ec501967"
+SharedFields:
+- ID: "06d5295c-ed2f-4a54-9bf2-26228d113318"
+  Hint: __Icon
+  Value: Office/32x32/document_text.png
+- ID: "580c75a8-c01a-4580-83cb-987776ceb3af"
+  Hint: Key
+  Value: SearchForm.Parameters.MessageRequest
+- ID: "f6d8a61c-2f84-4401-bd24-52d2068172bc"
+  Hint: __Originator
+  Value: "{A473F5DA-770D-4CE6-A868-450D6DFCAB24}"
+Languages:
+- Language: en
+  Fields:
+  - ID: "2ba3454a-9a9c-4cdf-a9f8-107fd484eb6e"
+    Hint: Phrase
+    Value: "What is your message?"
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20190514T194303Z

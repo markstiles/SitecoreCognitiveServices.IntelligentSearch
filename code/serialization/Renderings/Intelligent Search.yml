@@ -1,0 +1,14 @@
+﻿---
+ID: "10f13c24-d013-478b-ab73-634599402fd7"
+Parent: "18d9baf2-7d93-4098-b70e-16b772c6c673"
+Template: "7ee0975b-0698-493e-b3a2-0b2ef33d0522"
+Path: /sitecore/layout/Renderings/Sitecore Cognitive Services/Features/Intelligent Search
+DB: master
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20190429T174236Z
