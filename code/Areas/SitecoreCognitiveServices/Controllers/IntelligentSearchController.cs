@@ -120,7 +120,9 @@ namespace SitecoreCognitiveServices.Feature.IntelligentSearch.Areas.SitecoreCogn
 
         public string GetPhrase(LuisResult luisResult, List<string> types)
         {
-            var entities = luisResult.Entities
+            var filteredEntities = FilterEntityRecommendations(luisResult.Entities);
+
+            var entities = filteredEntities
                 .Where(a => types.Contains(a.Type))
                 .Select(b => new SortEntity { Name = b.Entity, SortValue = GetSortValue(b.Type), StartIndex = b.StartIndex.Value })
                 .OrderBy(c => c.SortValue)
@@ -128,6 +130,25 @@ namespace SitecoreCognitiveServices.Feature.IntelligentSearch.Areas.SitecoreCogn
                 .Select(e => e.Name);
 
             return string.Join(" ", entities).Replace(" ' ", "'");
+        }
+
+        public List<EntityRecommendation> FilterEntityRecommendations(IList<EntityRecommendation> entities)
+        {
+            var filteredEntities = new Dictionary<string, EntityRecommendation>();
+            foreach (var e in entities)
+            {
+                if (filteredEntities.ContainsKey(e.Entity))
+                {
+                    if (filteredEntities[e.Entity].Score < e.Score)
+                        filteredEntities[e.Entity] = e;
+                }
+                else
+                {
+                    filteredEntities.Add(e.Entity, e);
+                }
+            }
+
+            return filteredEntities.Values.ToList();
         }
 
         public int GetSortValue(string type)
