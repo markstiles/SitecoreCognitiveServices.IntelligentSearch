@@ -110,7 +110,8 @@ jQuery(document).ready(function () {
         var isOver = !hasResponse || (hasResponse && dialogResult.Response.Ended);
         var isQuit = dialogResult.Response.Intent.indexOf("quit") > -1;
         var hasNoIntent = dialogResult.Response.Intent.length < 1;
-        var searchValue = dialogResult.SearchPhrase.length > 0 ? dialogResult.SearchPhrase : queryValue;
+        var spellCorrectedValue = dialogResult.SpellCorrected.length > 0 ? dialogResult.SpellCorrected : queryValue; 
+        var searchValue = dialogResult.SearchPhrase.length > 0 ? dialogResult.SearchPhrase : spellCorrectedValue;
         if (isOver && hasNoIntent)
             GetSearchResult(searchValue);
 
@@ -122,7 +123,6 @@ jQuery(document).ready(function () {
         jQuery(resultWrap).show();
         
         var hasKnowledgePanel = dialogResult.KnowledgePanel !== undefined && dialogResult.KnowledgePanel !== null;
-        var hasAnswerBox = dialogResult.AnswerBox !== undefined && dialogResult.AnswerBox !== null;
         
         if (hasResponse) {        
             jQuery(searchChat).html(dialogResult.Response.Message);

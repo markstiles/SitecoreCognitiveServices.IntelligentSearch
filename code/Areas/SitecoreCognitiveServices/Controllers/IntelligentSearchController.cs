@@ -88,7 +88,7 @@ namespace SitecoreCognitiveServices.Feature.IntelligentSearch.Areas.SitecoreCogn
                 return Json(new { Failed = false });
 
             //call luis
-            var luisResult = !string.IsNullOrWhiteSpace(query) ? LuisService.Query(appId, query) : null;
+            var luisResult = !string.IsNullOrWhiteSpace(query) ? LuisService.Query(appId, query, true) : null;
             var dialogPhrase = GetPhrase(luisResult, new List<string> { "Noun", "Adjective", "Verb", "Adverb", "Preposition" });
             var knowledgePanel = BuildKnowledgePanel(luisResult, dialogPhrase);
             var contextParams = new ItemContextParameters
@@ -117,7 +117,8 @@ namespace SitecoreCognitiveServices.Feature.IntelligentSearch.Areas.SitecoreCogn
                 Failed = false,
                 KnowledgePanel = knowledgePanel,
                 Response = response,
-                SearchPhrase = GetPhrase(luisResult, new List<string> { "Noun", "Adjective" })
+                SearchPhrase = GetPhrase(luisResult, new List<string> { "Noun", "Adjective" }),
+                SpellCorrected = luisResult.AlteredQuery
             });
         }
 
