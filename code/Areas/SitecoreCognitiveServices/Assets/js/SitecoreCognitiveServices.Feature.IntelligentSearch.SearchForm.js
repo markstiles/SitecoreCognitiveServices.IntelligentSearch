@@ -110,7 +110,7 @@ jQuery(document).ready(function () {
         var isOver = !hasResponse || (hasResponse && dialogResult.Response.Ended);
         var isQuit = dialogResult.Response.Intent.indexOf("quit") > -1;
         var hasNoIntent = dialogResult.Response.Intent.length < 1;
-        var spellCorrectedValue = dialogResult.SpellCorrected.length > 0 ? dialogResult.SpellCorrected : queryValue; 
+        var spellCorrectedValue = dialogResult.SpellCorrected !== null && dialogResult.SpellCorrected.length > 0 ? dialogResult.SpellCorrected : queryValue; 
         var searchValue = dialogResult.SearchPhrase.length > 0 ? dialogResult.SearchPhrase : spellCorrectedValue;
         if (isOver && hasNoIntent)
             GetSearchResult(searchValue);
