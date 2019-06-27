@@ -37,6 +37,7 @@ namespace SitecoreCognitiveServices.Feature.IntelligentSearch.Areas.SitecoreCogn
         protected readonly ISpeechService SpeechService;
         protected readonly IWebSearchService WebSearchService;
         protected readonly IConversationContextFactory ConversationContextFactory;
+        protected readonly ISetupService SetupService;
 
         public IntelligentSearchController (
             IWebUtilWrapper webUtil,
@@ -48,7 +49,8 @@ namespace SitecoreCognitiveServices.Feature.IntelligentSearch.Areas.SitecoreCogn
             IAutoSuggestService autoSuggestService,
             ISpeechService speechService,
             IWebSearchService webSearchService,
-            IConversationContextFactory conversationContextFactory)
+            IConversationContextFactory conversationContextFactory,
+            ISetupService setupService)
         {
             WebUtil = webUtil;
             DataWrapper = dataWrapper;
@@ -60,6 +62,7 @@ namespace SitecoreCognitiveServices.Feature.IntelligentSearch.Areas.SitecoreCogn
             SpeechService = speechService;
             WebSearchService = webSearchService;
             ConversationContextFactory = conversationContextFactory;
+            SetupService = setupService;
         }
 
         #endregion
@@ -369,7 +372,29 @@ namespace SitecoreCognitiveServices.Feature.IntelligentSearch.Areas.SitecoreCogn
         //}
 
         //#endregion
+        
+        #region Backup
 
+        public ActionResult BackupApplication()
+        {
+            var result = SetupService.BackupApplication();
+
+            return View("BackupApplication", model: result);
+        }
+
+        #endregion
+
+        #region Restore
+
+        public ActionResult RestoreApplication()
+        {
+            var result = SetupService.RestoreApplication(true);
+
+            return View("RestoreApplication", model: result);
+        }
+
+        #endregion
+        
         #region Shared
 
         public bool IsSitecoreUser()

@@ -32,8 +32,10 @@ namespace SitecoreCognitiveServices.Feature.IntelligentSearch
 
         public virtual string DictionaryDomain => Settings.GetSetting("CognitiveService.IntelligentSearch.DictionaryDomain");
         public virtual Guid SearchProfileTemplateId => new Guid(Settings.GetSetting("CognitiveService.IntelligentSearch.SearchProfileTemplateId"));
+        public virtual ID IntelligentSearchRootId => new ID(Settings.GetSetting("CognitiveService.IntelligentSearch.IntelligentSearchRootId"));
         public virtual ID IntelligentSearchItemId => new ID(Settings.GetSetting("CognitiveService.IntelligentSearch.IntelligentSearchItemId"));
         public virtual ID ApplicationIdFieldId => new ID(Settings.GetSetting("CognitiveService.IntelligentSearch.ApplicationIdFieldId"));
+        public virtual ID ApplicationBackupFieldId => new ID(Settings.GetSetting("CognitiveService.IntelligentSearch.ApplicationBackupFieldId"));
         public virtual Guid ApplicationId(ID itemId)
         {
             var value = DataWrapper.GetItemById(itemId, MasterDatabase)?.Fields[ApplicationIdFieldId]?.Value;

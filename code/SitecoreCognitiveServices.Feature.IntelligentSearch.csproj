@@ -150,7 +150,9 @@
     <Compile Include="Areas\SitecoreCognitiveServices\Models\Sample\KnowledgePanelModel.cs" />
     <Compile Include="Areas\SitecoreCognitiveServices\Models\Setup\ISetupInformation.cs" />
     <Compile Include="Areas\SitecoreCognitiveServices\Models\Setup\SetupInformation.cs" />
+    <Compile Include="Commands\BackupApplication.cs" />
     <Compile Include="Commands\BaseIntelligentSearchCommand.cs" />
+    <Compile Include="Commands\RestoreApplication.cs" />
     <Compile Include="IIntelligentSearchSettings.cs" />
     <Compile Include="IntelligentSearchSettings.cs" />
     <Compile Include="Intents\BaseIntelligentSearchIntent.cs" />
@@ -166,7 +168,9 @@
     <Compile Include="Intents\RegistrationIntent.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\ISearchService.cs" />
+    <Compile Include="Services\ISetupService.cs" />
     <Compile Include="Services\SearchService.cs" />
+    <Compile Include="Services\SetupService.cs" />
     <Compile Include="Statics\Translator.cs" />
   </ItemGroup>
   <ItemGroup>

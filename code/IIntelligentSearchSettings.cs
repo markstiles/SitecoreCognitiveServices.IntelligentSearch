@@ -10,8 +10,10 @@ namespace SitecoreCognitiveServices.Feature.IntelligentSearch {
         ID SCSDKTemplatesFolderId { get; }
         ID SCSModulesFolderId { get; }
         Guid SearchProfileTemplateId { get; }
+        ID IntelligentSearchRootId { get; }
         ID IntelligentSearchItemId { get; }
         ID ApplicationIdFieldId { get; }
+        ID ApplicationBackupFieldId { get; }
         Guid ApplicationId(ID itemId);
         bool HasNoValue(string str);
         bool MissingKeys();
