@@ -28,7 +28,7 @@ namespace SitecoreCognitiveServices.Feature.IntelligentSearch
             //serviceCollection.AddTransient<ISetupInformation, SetupInformation>();
 
             //setup
-            //serviceCollection.AddTransient<ISetupService, SetupService>();
+            serviceCollection.AddTransient<ISetupService, SetupService>();
 
             serviceCollection.AddTransient(typeof(IntelligentSearchController));
         }
