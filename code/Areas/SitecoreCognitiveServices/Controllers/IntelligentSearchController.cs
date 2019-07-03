@@ -100,14 +100,15 @@ namespace SitecoreCognitiveServices.Feature.IntelligentSearch.Areas.SitecoreCogn
 
             var conversationContext = ConversationContextFactory.Create(
                     appId,
-                    Translator.Text("Chat.Accept"),
                     Translator.Text("Chat.Clear"),
                     Translator.Text("Chat.ConfirmMessage"),
+                    "decision - yes",
+                    "decision - no",
                     "frustrated",
+                    "quit",
                     query,
                     contextParams,
-                    luisResult,
-                    "quit");
+                    luisResult);
 
             var response = LuisConversationService.HandleMessage(conversationContext);
 

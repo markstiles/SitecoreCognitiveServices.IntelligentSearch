@@ -32,7 +32,7 @@ namespace SitecoreCognitiveServices.Feature.IntelligentSearch.Intents.Parameters
 
         #endregion
 
-        public IParameterResult GetParameter(string paramValue, ItemContextParameters parameters, IConversation conversation)
+        public IParameterResult GetParameter(string paramValue, IConversationContext context, ItemContextParameters parameters, IConversation conversation)
         {
             return ResultFactory.GetSuccess(paramValue);
             //Translator.Text("SearchForm.Parameters.NameValidationError")
