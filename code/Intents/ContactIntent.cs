@@ -11,9 +11,9 @@ namespace SitecoreCognitiveServices.Feature.IntelligentSearch.Intents
 {
     public class ContactIntent : BaseIntelligentSearchIntent
     {
-        public override string Name => "contact";
+        public override string KeyName => "contact";
 
-        public override string Description => "";
+        public override string DisplayName => "";
 
         public override bool RequiresConfirmation => false;
         
@@ -43,7 +43,7 @@ namespace SitecoreCognitiveServices.Feature.IntelligentSearch.Intents
             var message = (string)conversation.Data[MessageKey];
             //send email
 
-            return ConversationResponseFactory.Create(Name, Translator.Text("SearchForm.Intents.Contact.Success"));
+            return ConversationResponseFactory.Create(KeyName, Translator.Text("SearchForm.Intents.Contact.Success"));
         }
     }
 }

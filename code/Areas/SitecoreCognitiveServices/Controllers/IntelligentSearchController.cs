@@ -103,7 +103,7 @@ namespace SitecoreCognitiveServices.Feature.IntelligentSearch.Areas.SitecoreCogn
                     Translator.Text("Chat.Accept"),
                     Translator.Text("Chat.Clear"),
                     Translator.Text("Chat.ConfirmMessage"),
-                    "frustrated user",
+                    "frustrated",
                     query,
                     contextParams,
                     luisResult,

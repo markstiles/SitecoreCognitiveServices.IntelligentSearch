@@ -7,9 +7,9 @@ namespace SitecoreCognitiveServices.Feature.IntelligentSearch.Intents
 {
     public class DefaultIntent : BaseIntelligentSearchIntent
     {
-        public override string Name => "none";
+        public override string KeyName => "none";
 
-        public override string Description => "";
+        public override string DisplayName => "";
 
         public override bool RequiresConfirmation => false;
 

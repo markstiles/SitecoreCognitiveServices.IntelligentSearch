@@ -11,9 +11,9 @@ namespace SitecoreCognitiveServices.Feature.IntelligentSearch.Intents
 {
     public class QuitIntent : BaseIntelligentSearchIntent
     {
-        public override string Name => "quit";
+        public override string KeyName => "quit";
 
-        public override string Description => "";
+        public override string DisplayName => "";
 
         public override bool RequiresConfirmation => false;
 
@@ -26,7 +26,7 @@ namespace SitecoreCognitiveServices.Feature.IntelligentSearch.Intents
 
         public override ConversationResponse Respond(LuisResult result, ItemContextParameters parameters, IConversation conversation)
         {
-            return ConversationResponseFactory.Create(Name, Translator.Text("SearchForm.Intents.Quit.Response"));
+            return ConversationResponseFactory.Create(KeyName, Translator.Text("SearchForm.Intents.Quit.Response"));
         }
     }
 }

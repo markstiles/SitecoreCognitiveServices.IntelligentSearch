@@ -16,9 +16,9 @@ namespace SitecoreCognitiveServices.Feature.IntelligentSearch.Intents
 {
     public class RegistrationIntent : BaseIntelligentSearchIntent
     {
-        public override string Name => "registration";
+        public override string KeyName => "registration";
 
-        public override string Description => "";
+        public override string DisplayName => "";
 
         public override bool RequiresConfirmation => false;
         
@@ -45,7 +45,7 @@ namespace SitecoreCognitiveServices.Feature.IntelligentSearch.Intents
             var password = (string)conversation.Data[PasswordKey];
             //CreateUser(Sitecore.Context.Domain, username, password);
             
-            return ConversationResponseFactory.Create(Name, Translator.Text("SearchForm.Intents.Registration.Success"));
+            return ConversationResponseFactory.Create(KeyName, Translator.Text("SearchForm.Intents.Registration.Success"));
         }
 
         public void CreateUser(Domain domain, string email, string password)

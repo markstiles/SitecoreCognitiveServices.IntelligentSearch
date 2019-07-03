@@ -19,7 +19,7 @@ namespace SitecoreCognitiveServices.Feature.IntelligentSearch
 
             //intents
             serviceCollection.AddTransient<IIntent, DefaultIntent>();
-            serviceCollection.AddTransient<IIntent, FrustratedUserIntent>();
+            serviceCollection.AddTransient<IIntent, FrustratedIntent>();
             serviceCollection.AddTransient<IIntent, RegistrationIntent>();
             serviceCollection.AddTransient<IIntent, ContactIntent>();
             serviceCollection.AddTransient<IIntent, QuitIntent>();

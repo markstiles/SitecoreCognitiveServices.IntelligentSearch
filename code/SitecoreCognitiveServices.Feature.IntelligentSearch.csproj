@@ -157,7 +157,7 @@
     <Compile Include="IntelligentSearchSettings.cs" />
     <Compile Include="Intents\BaseIntelligentSearchIntent.cs" />
     <Compile Include="Intents\DefaultIntent.cs" />
-    <Compile Include="Intents\FrustratedUserIntent.cs" />
+    <Compile Include="Intents\FrustratedIntent.cs" />
     <Compile Include="Intents\Parameters\EmailParameter.cs" />
     <Compile Include="Intents\Parameters\NameParameter.cs" />
     <Compile Include="Intents\Parameters\MessageParameter.cs" />

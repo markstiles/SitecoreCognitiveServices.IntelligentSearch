@@ -4,15 +4,15 @@ using SitecoreCognitiveServices.Foundation.SCSDK.Services.MSSDK.Language.Models;
 
 namespace SitecoreCognitiveServices.Feature.IntelligentSearch.Intents
 {
-    public class FrustratedUserIntent : BaseIntelligentSearchIntent
+    public class FrustratedIntent : BaseIntelligentSearchIntent
     {
-        public override string Name => "frustrated user";
+        public override string KeyName => "frustrated";
 
-        public override string Description => "";
+        public override string DisplayName => "";
 
         public override bool RequiresConfirmation => false;
 
-        public FrustratedUserIntent(
+        public FrustratedIntent(
             IIntentInputFactory inputFactory,
             IConversationResponseFactory responseFactory,
             IIntelligentSearchSettings settings) : base(inputFactory, responseFactory, settings)
