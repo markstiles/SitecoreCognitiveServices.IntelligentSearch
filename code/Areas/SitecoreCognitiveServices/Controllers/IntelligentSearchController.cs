@@ -7,10 +7,13 @@ using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.UI.WebControls;
+using Sitecore.Data;
 using Sitecore.Data.Items;
 using SitecoreCognitiveServices.Feature.IntelligentSearch.Areas.SitecoreCognitiveServices.Models.Sample;
+using SitecoreCognitiveServices.Feature.IntelligentSearch.Areas.SitecoreCognitiveServices.Models.Setup;
 using SitecoreCognitiveServices.Feature.IntelligentSearch.Services;
 using SitecoreCognitiveServices.Feature.IntelligentSearch.Statics;
+using SitecoreCognitiveServices.Foundation.MSSDK;
 using SitecoreCognitiveServices.Foundation.MSSDK.Bing.Models.AutoSuggest;
 using SitecoreCognitiveServices.Foundation.MSSDK.Enums;
 using SitecoreCognitiveServices.Foundation.MSSDK.Language.Models.Luis;
@@ -38,6 +41,7 @@ namespace SitecoreCognitiveServices.Feature.IntelligentSearch.Areas.SitecoreCogn
         protected readonly IWebSearchService WebSearchService;
         protected readonly IConversationContextFactory ConversationContextFactory;
         protected readonly ISetupService SetupService;
+        protected readonly IMicrosoftCognitiveServicesApiKeys ApiKeys;
 
         public IntelligentSearchController (
             IWebUtilWrapper webUtil,
@@ -50,7 +54,8 @@ namespace SitecoreCognitiveServices.Feature.IntelligentSearch.Areas.SitecoreCogn
             ISpeechService speechService,
             IWebSearchService webSearchService,
             IConversationContextFactory conversationContextFactory,
-            ISetupService setupService)
+            ISetupService setupService,
+            IMicrosoftCognitiveServicesApiKeys apiKeys)
         {
             WebUtil = webUtil;
             DataWrapper = dataWrapper;
@@ -63,6 +68,7 @@ namespace SitecoreCognitiveServices.Feature.IntelligentSearch.Areas.SitecoreCogn
             WebSearchService = webSearchService;
             ConversationContextFactory = conversationContextFactory;
             SetupService = setupService;
+            ApiKeys = apiKeys;
         }
 
         #endregion
@@ -330,50 +336,68 @@ namespace SitecoreCognitiveServices.Feature.IntelligentSearch.Areas.SitecoreCogn
 
         #endregion
 
-        //#region Setup
+        #region Setup
 
-        //public ActionResult Setup()
-        //{
-        //    if (!IsSitecoreUser())
-        //        return LoginPage();
+        public ActionResult Setup()
+        {
+            if (!IsSitecoreUser())
+                return LoginPage();
 
-        //    var db = Sitecore.Configuration.Factory.GetDatabase(Settings.MasterDatabase);
-        //    using (new DatabaseSwitcher(db))
-        //    {
-        //        ISetupInformation info = SetupFactory.Create();
+            var db = Sitecore.Configuration.Factory.GetDatabase(Settings.MasterDatabase);
+            using (new DatabaseSwitcher(db))
+            {
+                var model = new SetupInformation(ApiKeys.Luis, ApiKeys.LuisEndpoint);
 
-        //        return View("Setup", info);
-        //    }
-        //}
+                return View("Setup", model);
+            }
+        }
 
-        //public ActionResult SetupSubmit(bool overwriteOption, string luisApi, string luisApiEndpoint, string textAnalyticsApi, string textAnalyticsApiEndpoint)
-        //{
-        //    if (!IsSitecoreUser())
-        //        return LoginPage();
+        public ActionResult SetupSubmit(string luisApi, string luisApiEndpoint)
+        {
+            if (!IsSitecoreUser())
+                return LoginPage();
+            
+            SetupService.SaveKeys(luisApi, luisApiEndpoint);
 
-        //    List<string> items = new List<string>();
+            return Json(new
+            {
+                Failed = false
+            });
+        }
 
-        //    SetupService.SaveKeys(luisApi, luisApiEndpoint, textAnalyticsApi, textAnalyticsApiEndpoint);
+        #endregion
 
-        //    var restoreResult = SetupService.RestoreSampleSearch(overwriteOption);
-        //    if(!restoreResult)
-        //        items.Add("Restore Sample Search");
+        #region Sync Applications
 
-        //    var queryResult = SetupService.QuerySampleSearch();
-        //    if(!queryResult)
-        //        items.Add("Query Sample Search");
+        public ActionResult SyncApplications()
+        {
+            if (!IsSitecoreUser())
+                return LoginPage();
 
-        //    SetupService.PublishSampleSearchContent();
+            var db = Sitecore.Configuration.Factory.GetDatabase(Settings.MasterDatabase);
 
-        //    return Json(new
-        //    {
-        //        Failed = items.Count > 0,
-        //        Items = string.Join(",", items)
-        //    });
-        //}
+            var apps = SetupService.GetApplications();
+            var data = apps.ToDictionary(a => a.Name, b => b.Id);
+            var model = new SyncApplications(data);
 
-        //#endregion
-        
+            return View("SyncApplications", model);
+        }
+
+        public ActionResult SyncApplicationsSubmit(string luisApi, string luisApiEndpoint)
+        {
+            if (!IsSitecoreUser())
+                return LoginPage();
+
+            SetupService.SaveKeys(luisApi, luisApiEndpoint);
+
+            return Json(new
+            {
+                Failed = false
+            });
+        }
+
+        #endregion
+
         #region Backup
 
         public ActionResult BackupApplication()

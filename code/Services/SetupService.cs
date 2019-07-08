@@ -69,6 +69,14 @@ namespace SitecoreCognitiveServices.Feature.IntelligentSearch.Services
             });
         }
 
+        public List<UserApplication> GetApplications()
+        {
+            var apps = LuisService.GetUserApplications();
+
+            return apps;
+        }
+
+
         public bool BackupApplication()
         {
             //var apps = LuisService.GetApplicationVersions(Settings.OleApplicationId).OrderByDescending(a => a.Version).ToList();
