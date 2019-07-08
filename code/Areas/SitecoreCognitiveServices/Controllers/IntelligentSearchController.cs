@@ -106,7 +106,6 @@ namespace SitecoreCognitiveServices.Feature.IntelligentSearch.Areas.SitecoreCogn
                     "decision - no",
                     "frustrated",
                     "quit",
-                    query,
                     contextParams,
                     luisResult);
 
