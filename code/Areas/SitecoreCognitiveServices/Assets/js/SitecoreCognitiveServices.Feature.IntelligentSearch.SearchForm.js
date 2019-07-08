@@ -218,7 +218,7 @@ jQuery(document).ready(function () {
                 for (var d = 0; d < result.Items.length; d++) {
                     searchHtml += "<div class='result-item' data-path='" + result.Items[d].Url + "'>";
                     searchHtml += "<div class='title'>" + result.Items[d].Title + "</div>";
-                    searchHtml += "<a class='link' target='_blank' href='/page'>" + result.Items[d].Url + "</a>";
+                    searchHtml += "<a class='link' target='_blank' href='" + result.Items[d].Url + "'>" + result.Items[d].Url + "</a>";
                     searchHtml += "<div class='description'>" + result.Items[d].Description + "</div>";
                     searchHtml += "</div>";
                 }

@@ -1,0 +1,33 @@
+﻿---
+ID: "8b5ec37f-94ab-4782-b28d-d2a6ad13ed11"
+Parent: "26d8b294-0b3f-455e-a27a-5eaa2c8264dc"
+Template: "26d8b294-0b3f-455e-a27a-5eaa2c8264dc"
+Path: /sitecore/templates/Sitecore Cognitive Services/Features/Intelligent Search/Home Page/__Standard Values
+DB: master
+SharedFields:
+- ID: "f1a1fe9e-a60c-4ddb-a3a0-bb5b29fe732e"
+  Hint: __Renderings
+  Type: layout
+  Value: |
+    <r xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+      <d
+        id="{FE5D7FDF-89C0-4D99-9AA3-B5FBD009C9F3}"
+        l="{0C75D3A2-DA54-49A5-A2AB-E2F1974C3F46}">
+        <r
+          id="{40A9D743-7219-4922-BFD3-36BD780CBBC3}"
+          ph="main"
+          uid="{FFE65BC8-E81C-41A1-8135-BCB86561B2E0}" />
+      </d>
+    </r>
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20190708T133413Z
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\admin

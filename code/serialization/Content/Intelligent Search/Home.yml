@@ -1,0 +1,18 @@
+﻿---
+ID: "214b846e-469b-4147-975f-c1d4a6c9e68c"
+Parent: "abcd47f9-6b9b-426a-ac86-478e340284f7"
+Template: "26d8b294-0b3f-455e-a27a-5eaa2c8264dc"
+Path: /sitecore/content/Intelligent Search/Home
+DB: master
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20190708T133346Z
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\admin
