@@ -11,10 +11,5 @@ namespace SitecoreCognitiveServices.Feature.IntelligentSearch.Services
     {
         void SaveKeys(string luisApi, string luisApiEndpoint);
         void UpdateKey(ID fieldId, string value);
-        List<UserApplication> GetApplications();
-        bool BackupApplication();
-        bool RestoreApplication(bool overwrite);
-        bool QueryApplication();
-        void PublishApplicationContent();
     }
 }

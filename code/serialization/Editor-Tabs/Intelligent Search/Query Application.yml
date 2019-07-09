@@ -2,12 +2,12 @@
 ID: "60d554e6-cfca-46e9-8fcb-a6acd52f419a"
 Parent: "9eee45eb-e887-4d28-8705-8957b69f387e"
 Template: "a5aaca0d-77c0-4741-ab77-211cfbdd9e5c"
-Path: /sitecore/content/Applications/Content Editor/Editors/Sitecore Cognitive Services/Intelligent Search/Sync Applications
+Path: /sitecore/content/Applications/Content Editor/Editors/Sitecore Cognitive Services/Intelligent Search/Query Application
 DB: core
 SharedFields:
 - ID: "6f371c74-5bd5-4ebd-b10a-fc54716021ae"
   Hint: Url
-  Value: /SitecoreCognitiveServices/IntelligentSearch/SyncApplications
+  Value: /SitecoreCognitiveServices/IntelligentSearch/QueryApplication
 - ID: "ab8d0102-91f3-43b6-90aa-5a0641dc8521"
   Hint: Icon
   Value: Office/32x32/arrow_circle2.png

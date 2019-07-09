@@ -40,9 +40,9 @@ namespace SitecoreCognitiveServices.Feature.IntelligentSearch
         {
             var value = DataWrapper.GetItemById(itemId, MasterDatabase)?.Fields[ApplicationIdFieldId]?.Value;
 
-            return value == null
+            return value == null || !Guid.TryParse(value, out Guid g)
                 ? Guid.Empty 
-                : new Guid(value);
+                : g;
         } 
 
         public bool HasNoValue(string str)

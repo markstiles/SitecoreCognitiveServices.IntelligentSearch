@@ -1,0 +1,44 @@
+﻿@using SitecoreCognitiveServices.Feature.IntelligentSearch.Statics
+@model SitecoreCognitiveServices.Feature.IntelligentSearch.Areas.SitecoreCognitiveServices.Models.Setup.QueryApplicationViewModel
+
+@{
+    ViewBag.Title = Translator.Text("Sync.ViewTitle");
+    Layout = "~/Areas/SitecoreCognitiveServices/Views/Common/CognitiveLayout.cshtml";
+}
+
+@if (Model == null)
+{
+    return;
+}
+
+<link href="/Areas/SitecoreCognitiveServices/Assets/css/SitecoreCognitiveServices.Feature.IntelligentSearch.css?x=@(new System.Random().Next())" rel="stylesheet" type="text/css" />
+
+<div class="frame editor-tab">
+    <h2>@Translator.Text("Query.FormHeading")</h2>
+    <h3 class="query-error">@Translator.Text("Query.NoAppId")</h3>
+    <form class="form query-form" method="post" action="/SitecoreCognitiveServices/IntelligentSearch/QueryApplicationPost">
+        <div class="form-scrollable">
+            <fieldset>
+                <legend>@Translator.Text("Query.InputLabel")</legend>
+                <div class="form-row">
+                    <input type="hidden" id="app-id" name="app-id" value="@Model.AppId" />
+                    <input type="text" id="query-value" name="query-value" value="" />
+                </div>
+            </fieldset>
+            <div class="query-result">
+                <textarea disabled class="query-result-value"></textarea>
+            </div>
+            <div class="progress-indicator">
+                <div class="progress-bg"></div>
+                <div class="progress-image">
+                    <img src="/sitecore/shell/themes/standard/Images/ProgressIndicator/sc-spinner32.gif" />
+                </div>
+            </div>
+        </div>
+        <div class="scWizardButtons">
+            <button class="form-submit scButton scButtonPrimary">@Translator.Text("Query.ButtonText")</button>
+        </div>
+    </form>
+</div>
+
+<script src="/Areas/SitecoreCognitiveServices/Assets/js/SitecoreCognitiveServices.Feature.IntelligentSearch.QueryApplication.js"></script>

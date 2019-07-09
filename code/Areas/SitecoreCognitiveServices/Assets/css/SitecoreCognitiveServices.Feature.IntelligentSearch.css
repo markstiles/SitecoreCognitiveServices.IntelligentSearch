@@ -93,3 +93,8 @@ fieldset a { text-decoration: underline; font-weight: bold; }
 .search-suggest .option { margin-bottom:7px; cursor: pointer; padding: 4px 8px;  }
 .search-suggest .option:hover { background-color:#ccc; }
 .search-suggest .option .suggestion { font-weight:bold; }
+
+/* Query Application */
+.query-form .query-result { padding: 0px 10px; }
+.query-form textarea { color: 444; background-color:#eee; height: 235px; overflow: auto; }
+.query-error { display:none; padding: 0 10px; margin:20px 0; }

@@ -1,0 +1,23 @@
+﻿---
+ID: "8309cc28-5340-409f-9752-40f65e744d79"
+Parent: "c4f94e58-8023-4041-b62c-1084e6c22652"
+Template: "c4f94e58-8023-4041-b62c-1084e6c22652"
+Path: /sitecore/templates/Sitecore Cognitive Services/Features/Intelligent Search/Search Profile/__Standard Values
+DB: master
+SharedFields:
+- ID: "a0cb3965-8884-4c7a-8815-b6b2e5ced162"
+  Hint: __Editors
+  Type: TreelistEx
+  Value: "{60D554E6-CFCA-46E9-8FCB-A6ACD52F419A}"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20190709T023940Z
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\admin

@@ -346,7 +346,7 @@ namespace SitecoreCognitiveServices.Feature.IntelligentSearch.Areas.SitecoreCogn
             var db = Sitecore.Configuration.Factory.GetDatabase(Settings.MasterDatabase);
             using (new DatabaseSwitcher(db))
             {
-                var model = new SetupInformation(ApiKeys.Luis, ApiKeys.LuisEndpoint);
+                var model = new SetupInformationViewModel(ApiKeys.Luis, ApiKeys.LuisEndpoint);
 
                 return View("Setup", model);
             }
@@ -366,56 +366,35 @@ namespace SitecoreCognitiveServices.Feature.IntelligentSearch.Areas.SitecoreCogn
         }
 
         #endregion
+        
+        #region Query Application
 
-        #region Sync Applications
-
-        public ActionResult SyncApplications()
+        public ActionResult QueryApplication()
         {
-            if (!IsSitecoreUser())
-                return LoginPage();
+            var idQs = WebUtil.GetQueryString("id");
+            var dbQs = WebUtil.GetQueryString("database");
+            var item = DataWrapper.GetItemByIdValue(idQs, dbQs);
+            var appIdValue = item?.Fields[Settings.ApplicationIdFieldId]?.Value;
+            
+            var model = new QueryApplicationViewModel(appIdValue);
 
-            var db = Sitecore.Configuration.Factory.GetDatabase(Settings.MasterDatabase);
-
-            var apps = SetupService.GetApplications();
-            var data = apps.ToDictionary(a => a.Name, b => b.Id);
-            var model = new SyncApplications(data);
-
-            return View("SyncApplications", model);
-        }
-
-        public ActionResult SyncApplicationsSubmit(string luisApi, string luisApiEndpoint)
-        {
-            if (!IsSitecoreUser())
-                return LoginPage();
-
-            SetupService.SaveKeys(luisApi, luisApiEndpoint);
-
-            return Json(new
-            {
-                Failed = false
-            });
-        }
-
-        #endregion
-
-        #region Backup
-
-        public ActionResult BackupApplication()
-        {
-            var result = SetupService.BackupApplication();
-
-            return View("BackupApplication", model: result);
+            return View("QueryApplication", model);
         }
 
         #endregion
 
         #region Restore
 
-        public ActionResult RestoreApplication()
+        public ActionResult QueryApplicationPost(string applicationId, string query)
         {
-            var result = SetupService.RestoreApplication(true);
+            var appId = new Guid(applicationId);
+            if (appId == Guid.Empty)
+                return Json(new { Failed = false });
 
-            return View("RestoreApplication", model: result);
+            var luisResult = !string.IsNullOrWhiteSpace(query) ? LuisService.Query(appId, query, false) : null;
+
+            
+            return Json(new { luisResult });
         }
 
         #endregion
