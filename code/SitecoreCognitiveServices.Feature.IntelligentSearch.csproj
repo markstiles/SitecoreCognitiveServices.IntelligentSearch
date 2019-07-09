@@ -149,6 +149,7 @@
     <Compile Include="Areas\SitecoreCognitiveServices\Controllers\IntelligentSearchController.cs" />
     <Compile Include="Areas\SitecoreCognitiveServices\Models\Sample\KnowledgePanelModel.cs" />
     <Compile Include="Areas\SitecoreCognitiveServices\Models\Setup\SetupInformation.cs" />
+    <Compile Include="Areas\SitecoreCognitiveServices\Models\Setup\SyncApplications.cs" />
     <Compile Include="Commands\BackupApplication.cs" />
     <Compile Include="Commands\BaseIntelligentSearchCommand.cs" />
     <Compile Include="Commands\RestoreApplication.cs" />
