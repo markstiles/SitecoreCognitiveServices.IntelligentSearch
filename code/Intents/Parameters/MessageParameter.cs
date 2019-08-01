@@ -9,7 +9,7 @@ using System.Web;
 
 namespace SitecoreCognitiveServices.Feature.IntelligentSearch.Intents.Parameters
 {
-    public class MessageParameter : IRequiredConversationParameter
+    public class MessageParameter : IConversationParameter
     {
         #region Constructor
 

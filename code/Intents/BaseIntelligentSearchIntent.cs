@@ -24,7 +24,7 @@ namespace SitecoreCognitiveServices.Feature.IntelligentSearch.Intents
 
         public virtual Guid ApplicationId => Settings.ApplicationId(Settings.IntelligentSearchItemId);
 
-        public virtual List<IRequiredConversationParameter> ConversationParameters { get; }
+        public virtual List<IConversationParameter> ConversationParameters { get; }
         
         protected BaseIntelligentSearchIntent(
             IIntentInputFactory inputFactory,
@@ -34,7 +34,7 @@ namespace SitecoreCognitiveServices.Feature.IntelligentSearch.Intents
             Settings = settings;
             ConversationResponseFactory = responseFactory;
             IntentInputFactory = inputFactory;
-            ConversationParameters = new List<IRequiredConversationParameter>();
+            ConversationParameters = new List<IConversationParameter>();
         }
         
         #endregion
