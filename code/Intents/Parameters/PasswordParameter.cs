@@ -36,7 +36,7 @@ namespace SitecoreCognitiveServices.Feature.IntelligentSearch.Intents.Parameters
         {
             return (string.IsNullOrWhiteSpace(paramValue) || paramValue.Length < 8)
                    ? ResultFactory.GetFailure(Translator.Text("SearchForm.Parameters.PasswordValidationError"))
-                   : ResultFactory.GetSuccess(paramValue);
+                   : ResultFactory.GetSuccess(paramValue, paramValue);
         }
 
         public IntentInput GetInput(ItemContextParameters parameters, IConversation conversation)

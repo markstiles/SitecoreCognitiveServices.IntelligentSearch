@@ -39,7 +39,7 @@ namespace SitecoreCognitiveServices.Feature.IntelligentSearch.Intents.Parameters
             {
                 MailAddress m = new MailAddress(paramValue);
 
-                return ResultFactory.GetSuccess(paramValue);
+                return ResultFactory.GetSuccess(paramValue, paramValue);
             }
             catch (FormatException) { }
 

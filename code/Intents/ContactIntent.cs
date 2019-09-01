@@ -38,9 +38,9 @@ namespace SitecoreCognitiveServices.Feature.IntelligentSearch.Intents
 
         public override ConversationResponse Respond(LuisResult result, ItemContextParameters parameters, IConversation conversation)
         {
-            var name = (string)conversation.Data[NameKey];
-            var email = (string)conversation.Data[EmailKey];
-            var message = (string)conversation.Data[MessageKey];
+            var name = (string)conversation.Data[NameKey].Value;
+            var email = (string)conversation.Data[EmailKey].Value;
+            var message = (string)conversation.Data[MessageKey].Value;
             //send email
 
             return ConversationResponseFactory.Create(KeyName, Translator.Text("SearchForm.Intents.Contact.Success"));

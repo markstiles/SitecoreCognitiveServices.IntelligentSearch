@@ -41,8 +41,8 @@ namespace SitecoreCognitiveServices.Feature.IntelligentSearch.Intents
 
         public override ConversationResponse Respond(LuisResult result, ItemContextParameters parameters, IConversation conversation)
         {
-            var username = (string)conversation.Data[UsernameKey];
-            var password = (string)conversation.Data[PasswordKey];
+            var username = (string)conversation.Data[UsernameKey].Value;
+            var password = (string)conversation.Data[PasswordKey].Value;
             //CreateUser(Sitecore.Context.Domain, username, password);
             
             return ConversationResponseFactory.Create(KeyName, Translator.Text("SearchForm.Intents.Registration.Success"));
