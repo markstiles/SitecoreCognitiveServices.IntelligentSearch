@@ -115,7 +115,7 @@ namespace SitecoreCognitiveServices.Feature.IntelligentSearch.Areas.SitecoreCogn
                     contextParams,
                     luisResult);
 
-            var response = LuisConversationService.HandleMessage(conversationContext);
+            var response = LuisConversationService.ProcessUserInput(conversationContext);
 
             //return result
             return Json(new
