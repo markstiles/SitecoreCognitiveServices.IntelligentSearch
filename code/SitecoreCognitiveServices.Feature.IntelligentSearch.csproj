@@ -168,9 +168,7 @@
     <Compile Include="Intents\RegistrationIntent.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\ISearchService.cs" />
-    <Compile Include="Services\ISetupService.cs" />
     <Compile Include="Services\SearchService.cs" />
-    <Compile Include="Services\SetupService.cs" />
     <Compile Include="Statics\Translator.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -181,8 +179,6 @@
     <Content Include="Areas\SitecoreCognitiveServices\Assets\css\SitecoreCognitiveServices.Feature.IntelligentSearch.css" />
     <Content Include="Areas\SitecoreCognitiveServices\Assets\js\SitecoreCognitiveServices.Feature.IntelligentSearch.QueryApplication.js" />
     <Content Include="Areas\SitecoreCognitiveServices\Assets\js\SitecoreCognitiveServices.Feature.IntelligentSearch.SearchForm.js" />
-    <Content Include="Areas\SitecoreCognitiveServices\Assets\js\SitecoreCognitiveServices.Feature.IntelligentSearch.Setup.js" />
-    <Content Include="Areas\SitecoreCognitiveServices\Views\IntelligentSearch\Setup.cshtml" />
     <Content Include="Areas\SitecoreCognitiveServices\Views\IntelligentSearch\web.config">
       <SubType>Designer</SubType>
     </Content>

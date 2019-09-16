@@ -40,7 +40,6 @@ namespace SitecoreCognitiveServices.Feature.IntelligentSearch.Areas.SitecoreCogn
         protected readonly ISpeechService SpeechService;
         protected readonly IWebSearchService WebSearchService;
         protected readonly IConversationContextFactory ConversationContextFactory;
-        protected readonly ISetupService SetupService;
         protected readonly IMicrosoftCognitiveServicesApiKeys ApiKeys;
 
         public IntelligentSearchController (
@@ -54,7 +53,6 @@ namespace SitecoreCognitiveServices.Feature.IntelligentSearch.Areas.SitecoreCogn
             ISpeechService speechService,
             IWebSearchService webSearchService,
             IConversationContextFactory conversationContextFactory,
-            ISetupService setupService,
             IMicrosoftCognitiveServicesApiKeys apiKeys)
         {
             WebUtil = webUtil;
@@ -67,7 +65,6 @@ namespace SitecoreCognitiveServices.Feature.IntelligentSearch.Areas.SitecoreCogn
             SpeechService = speechService;
             WebSearchService = webSearchService;
             ConversationContextFactory = conversationContextFactory;
-            SetupService = setupService;
             ApiKeys = apiKeys;
         }
 
@@ -250,122 +247,6 @@ namespace SitecoreCognitiveServices.Feature.IntelligentSearch.Areas.SitecoreCogn
         }
 
         #endregion
-
-        #region Intents
-
-        public ActionResult SyncProfiles()
-        {
-            // first open setup, input form, save and sync
-            // one modal with three tabs for adding profiles, adding phrases 
-            // with sample search and an intent selector
-            // and sync/train/publish
-            Item curItem = null;
-
-            // get anything
-            var apps = LuisService.GetUserApplications();
-            if (!apps.Any())
-                return new EmptyResult();
-
-            Guid appId = new Guid(apps.First().Id); // new Guid(curItem.Fields[Settings.ApplicationIdFieldId].Value);
-            
-            // get any information
-            var appVersions = LuisService.GetApplicationVersions(appId).OrderByDescending(a => a.Version).ToList();
-            
-            // export what you found
-            var export = LuisService.ExportApplicationVersion(appId, appVersions.First().Version);
-            
-            // delete profile
-            LuisService.DeleteApplication(appId);
-
-            // create profile
-            var appRequest = new AddApplicationRequest()
-            {
-                Culture = "",
-                Description = "",
-                Domain = "",
-                InitialVersionId = "",
-                Name = "",
-                UsageScenario = ""
-            };
-            var appResponse = LuisService.AddApplication(appRequest);
-            appId = new Guid(appResponse);
-            
-            // get profile information
-            //LuisService.GetApplicationInfo();
-
-            // create intent
-            var neRequest = new NamedEntityRequest()
-            {
-                Name = ""
-            };
-            Guid intentId = LuisService.CreateIntentClassifier(appId, "", neRequest);
-
-            // get intent info
-            var intentInfo = LuisService.GetIntentInfo(appId, "", intentId);
-            var intents = LuisService.GetApplicationVersionIntentInfos(appId, "");
-
-            // gets queries to improve entities
-            var entityQueries = LuisService.SuggestEndpointQueriesForEntities(appId, "", intentId);
-            // gets queries to improve intents
-            var intentQueries = LuisService.SuggestEndpointQueriesForIntents(appId, "", intentId);
-            // get all query history
-            var queryLogs = LuisService.DownloadApplicationQueryLogs(appId);
-            // order by lowest rated confidence and deal with those first
-            // also flatten to dictionary then you can filter through known examples
-            var examples = LuisService.ReviewLabeledExamples(appId, "");
-
-            // add phrases
-            var request = new AddLabelRequest()
-            {
-                EntityLabels = new[]
-                {
-                    new ApplicationLabel()
-                    {
-                        EndCharIndex = 0,
-                        EntityName = "",
-                        StartCharIndex = 0
-                    },
-                },
-                IntentName = "",
-                Text = ""
-            };
-            LuisService.AddLabel(appId, "", request);
-            
-            return new EmptyResult();
-        }
-
-        #endregion
-
-        #region Setup
-
-        public ActionResult Setup()
-        {
-            if (!IsSitecoreUser())
-                return LoginPage();
-
-            var db = Sitecore.Configuration.Factory.GetDatabase(Settings.MasterDatabase);
-            using (new DatabaseSwitcher(db))
-            {
-                var model = new SetupInformationViewModel(ApiKeys.Luis, ApiKeys.LuisEndpoint);
-
-                return View("Setup", model);
-            }
-        }
-
-        public ActionResult SetupSubmit(string luisApi, string luisApiEndpoint)
-        {
-            if (!IsSitecoreUser())
-                return LoginPage();
-            
-            SetupService.SaveKeys(luisApi, luisApiEndpoint);
-
-            return Json(new
-            {
-                Failed = false
-            });
-        }
-
-        #endregion
         
         #region Query Application
 
@@ -379,22 +260,6 @@ namespace SitecoreCognitiveServices.Feature.IntelligentSearch.Areas.SitecoreCogn
             var model = new QueryApplicationViewModel(appIdValue);
 
             return View("QueryApplication", model);
-        }
-
-        #endregion
-
-        #region Restore
-
-        public ActionResult QueryApplicationPost(string applicationId, string query)
-        {
-            var appId = new Guid(applicationId);
-            if (appId == Guid.Empty)
-                return Json(new { Failed = false });
-
-            var luisResult = !string.IsNullOrWhiteSpace(query) ? LuisService.Query(appId, query, false) : null;
-
-            
-            return Json(new { luisResult });
         }
 
         #endregion

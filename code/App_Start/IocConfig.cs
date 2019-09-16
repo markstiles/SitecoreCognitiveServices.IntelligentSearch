@@ -23,13 +23,7 @@ namespace SitecoreCognitiveServices.Feature.IntelligentSearch
             serviceCollection.AddTransient<IIntent, RegistrationIntent>();
             serviceCollection.AddTransient<IIntent, ContactIntent>();
             serviceCollection.AddTransient<IIntent, QuitIntent>();
-
-            //models
-            //serviceCollection.AddTransient<ISetupInformation, SetupInformation>();
-
-            //setup
-            serviceCollection.AddTransient<ISetupService, SetupService>();
-
+                        
             serviceCollection.AddTransient(typeof(IntelligentSearchController));
         }
     }
