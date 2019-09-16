@@ -52,7 +52,7 @@ Languages:
   Fields:
   - ID: "f7c42332-728e-48b7-bb3c-0d6883e45628"
     Hint: Header
-    Value: Setup
+    Value: Query App
   Versions:
   - Version: 1
     Fields:
