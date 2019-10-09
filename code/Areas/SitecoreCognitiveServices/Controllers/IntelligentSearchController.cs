@@ -262,8 +262,20 @@ namespace SitecoreCognitiveServices.Feature.IntelligentSearch.Areas.SitecoreCogn
             return View("QueryApplication", model);
         }
 
+        public ActionResult QueryApplicationPost(string applicationId, string query)
+        {
+            var appId = new Guid(applicationId);
+            if (appId == Guid.Empty)
+                return Json(new { Failed = false });
+
+            var luisResult = !string.IsNullOrWhiteSpace(query) ? LuisService.Query(appId, query, false) : null;
+
+
+            return Json(new { luisResult });
+        }
+
         #endregion
-        
+
         #region Shared
 
         public bool IsSitecoreUser()
