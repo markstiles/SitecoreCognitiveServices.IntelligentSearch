@@ -14,8 +14,9 @@ namespace SitecoreCognitiveServices.Feature.IntelligentSearch.Intents.Parameters
         #region Constructor
 
         public string ParamName { get; set; }
-        public string ParamMessage { get; set; }
-        
+        protected string ParamMessage { get; set; }
+        public string GetParamMessage(IConversation conversation) => ParamMessage;
+
         public IIntentInputFactory IntentInputFactory { get; set; }
         public IParameterResultFactory ResultFactory { get; set; }
 
