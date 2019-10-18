@@ -9,13 +9,13 @@ using System.Web;
 
 namespace SitecoreCognitiveServices.Feature.IntelligentSearch.Intents.Parameters
 {
-    public class NameParameter : IRequiredParameter
+    public class NameParameter : IFieldParameter
     {
         #region Constructor
 
         public string ParamName { get; set; }
         protected string ParamMessage { get; set; }
-        public string GetParamMessage(IConversation conversation) => ParamMessage;
+        public bool IsOptional { get; set; }
 
         public IIntentInputFactory IntentInputFactory { get; set; }
         public IParameterResultFactory ResultFactory { get; set; }
@@ -29,12 +29,16 @@ namespace SitecoreCognitiveServices.Feature.IntelligentSearch.Intents.Parameters
             ParamMessage = Translator.Text("SearchForm.Parameters.NameRequest");
             IntentInputFactory = inputFactory;
             ResultFactory = resultFactory;
+            IsOptional = false;
         }
 
         #endregion
 
         public IParameterResult GetParameter(string paramValue, IConversationContext context)
         {
+            if (string.IsNullOrWhiteSpace(paramValue))
+                return ResultFactory.GetFailure(ParamMessage);
+
             return ResultFactory.GetSuccess(paramValue, paramValue);
             //Translator.Text("SearchForm.Parameters.NameValidationError")
         }

@@ -9,13 +9,13 @@ using System.Web;
 
 namespace SitecoreCognitiveServices.Feature.IntelligentSearch.Intents.Parameters
 {
-    public class PasswordParameter : IRequiredParameter
+    public class PasswordParameter : IFieldParameter
     {
         #region Constructor
 
         public string ParamName { get; set; }
         protected string ParamMessage { get; set; }
-        public string GetParamMessage(IConversation conversation) => ParamMessage;
+        public bool IsOptional { get; set; }
 
         public IIntentInputFactory IntentInputFactory { get; set; }
         public IParameterResultFactory ResultFactory { get; set; }
@@ -29,12 +29,16 @@ namespace SitecoreCognitiveServices.Feature.IntelligentSearch.Intents.Parameters
             ParamMessage = Translator.Text("SearchForm.Parameters.PasswordRequest");
             IntentInputFactory = inputFactory;
             ResultFactory = resultFactory;
+            IsOptional = false;
         }
 
         #endregion
 
         public IParameterResult GetParameter(string paramValue, IConversationContext context)
         {
+            if (string.IsNullOrWhiteSpace(paramValue))
+                return ResultFactory.GetFailure(ParamMessage);
+
             return (string.IsNullOrWhiteSpace(paramValue) || paramValue.Length < 8)
                    ? ResultFactory.GetFailure(Translator.Text("SearchForm.Parameters.PasswordValidationError"))
                    : ResultFactory.GetSuccess(paramValue, paramValue);
